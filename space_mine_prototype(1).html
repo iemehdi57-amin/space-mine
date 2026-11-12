@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SPACE MINE | معدن فضایی</title>
+<style>
+:root{--bg:#071326;--panel:#10233d;--panel2:#142d4c;--cyan:#56e0ee;--gold:#ffd36a;--text:#edf7ff;--muted:#9db4cc;--green:#6ee7a8}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -10%,#1c4771 0,#0a1b32 42%,var(--bg) 100%);color:var(--text);font-family:Tahoma,Arial,sans-serif;min-height:100vh}
+.wrap{max-width:760px;margin:auto;padding:18px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}.brand{font-size:24px;font-weight:900;letter-spacing:1px;color:#fff}.brand span{color:var(--cyan)}.tag{font-size:11px;color:var(--green);border:1px solid #286e60;padding:6px 10px;border-radius:99px}
+.hero{border:1px solid #285078;border-radius:22px;padding:18px;background:linear-gradient(145deg,#15395b,#0d203a);box-shadow:0 14px 40px #0005;overflow:hidden;position:relative}
+.hero:after{content:"";position:absolute;width:210px;height:210px;border-radius:50%;background:#2a7caa22;left:-65px;top:-75px}
+.planet{height:190px;display:grid;place-items:center;position:relative;z-index:1}.planet .orb{width:142px;height:142px;border-radius:50%;background:radial-gradient(circle at 32% 27%,#a7f6ff 0,#43c4e2 18%,#236baf 48%,#142d65 76%,#0b183b 100%);box-shadow:inset -18px -14px 28px #020b2b99,0 0 40px #45c8ef66;position:relative}.orb:before,.orb:after{content:"";position:absolute;background:#7be6e966;border-radius:50%;transform:rotate(-25deg)}.orb:before{width:60px;height:15px;left:22px;top:48px}.orb:after{width:35px;height:9px;left:67px;top:90px}.ship{position:absolute;font-size:45px;filter:drop-shadow(0 0 14px #8cecff);transform:translate(78px,-18px)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:10px;position:relative;z-index:1}.stat{background:#06172b99;border:1px solid #2b5276;border-radius:14px;padding:11px;text-align:center}.stat small{display:block;color:var(--muted);font-size:11px;margin-bottom:5px}.stat strong{font-size:18px}
+.panel{background:linear-gradient(145deg,#102642,#0c1d34);border:1px solid #244564;border-radius:18px;padding:16px;margin-top:14px}.panel h2{font-size:16px;margin:0 0 12px}.energyline{height:11px;border-radius:99px;background:#061326;overflow:hidden;border:1px solid #31506b}.energyfill{height:100%;width:100%;background:linear-gradient(90deg,#48d9e8,#80f4c3);transition:width .2s}.muted{color:var(--muted);font-size:12px}.row{display:flex;justify-content:space-between;align-items:center;gap:12px}.minebtn{width:100%;margin-top:14px;padding:16px;border:0;border-radius:15px;color:#062039;font-size:18px;font-weight:900;background:linear-gradient(100deg,#63e8ee,#a0f4d0);box-shadow:0 6px 0 #267c91;cursor:pointer}.minebtn:active{transform:translateY(3px);box-shadow:0 3px 0 #267c91}.minebtn:disabled{opacity:.45;cursor:not-allowed}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.item{background:#0a1b30;border:1px solid #274765;border-radius:14px;padding:13px}.item h3{font-size:14px;margin:0 0 7px}.item p{font-size:12px;color:var(--muted);margin:0 0 10px;min-height:30px;line-height:1.7}
+button.secondary{background:#183d5c;border:1px solid #39708f;color:#e9f8ff;padding:9px 12px;border-radius:10px;font-family:inherit;font-weight:700;cursor:pointer}button.secondary:disabled{opacity:.4;cursor:not-allowed}.mission{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid #25415c}.mission:last-child{border:0}.mission b{font-size:13px}.mission small{display:block;color:var(--muted);margin-top:4px}.toast{min-height:20px;color:var(--gold);font-size:12px;margin-top:9px}.footer{text-align:center;color:#718ba7;font-size:11px;padding:18px 0}
+@media(max-width:480px){.wrap{padding:12px}.stats{gap:6px}.stat{padding:9px 5px}.stat strong{font-size:16px}.grid{grid-template-columns:1fr}.planet{height:165px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top"><div class="brand">SPACE <span>MINE</span></div><div class="tag">نسخه آزمایشی ۰.۱</div></header>
+  <section class="hero">
+    <div class="row"><div><div class="muted">منطقه فعلی</div><h2 style="margin:5px 0 0">سیارک آبی</h2></div><div class="muted">🚀 سفینه شماره ۰۰۱</div></div>
+    <div class="planet"><div class="orb"></div><div class="ship">🛸</div></div>
+    <div class="stats">
+      <div class="stat"><small>🪨 سنگ فضایی</small><strong id="ore">۰</strong></div>
+      <div class="stat"><small>💎 کریستال</small><strong id="crystal">۰</strong></div>
+      <div class="stat"><small>⚡ انرژی</small><strong id="energy">۱۰۰/۱۰۰</strong></div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="row"><h2>⚡ انرژی سفینه</h2><span class="muted" id="energyText">۱۰۰ از ۱۰۰</span></div>
+    <div class="energyline"><div class="energyfill" id="energyBar"></div></div>
+    <button class="minebtn" id="mine">⛏️ استخراج منابع</button>
+    <div class="toast" id="toast">برای شروع، دکمه استخراج را بزن!</div>
+  </section>
+
+  <section class="panel">
+    <h2>🛠️ ارتقای تجهیزات</h2>
+    <div class="grid">
+      <div class="item"><h3>🔧 مته لیزری سطح <span id="drillLevel">۱</span></h3><p>هر بار استخراج، سنگ بیشتری به دست می‌آوری.</p><div class="row"><span class="muted">هزینه: <b id="drillCost">۵۰</b> سنگ</span><button class="secondary" id="upgradeDrill">ارتقا</button></div></div>
+      <div class="item"><h3>🔋 باتری سطح <span id="batteryLevel">۱</span></h3><p>ظرفیت انرژی سفینه را بیشتر می‌کند.</p><div class="row"><span class="muted">هزینه: <b id="batteryCost">۷۰</b> سنگ</span><button class="secondary" id="upgradeBattery">ارتقا</button></div></div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>🪐 نقشه کهکشان</h2>
+    <div class="grid">
+      <div class="item"><h3>🔵 سیارک آبی</h3><p>منطقه آغازین؛ مناسب استخراج سنگ فضایی.</p><button class="secondary" disabled>منطقه فعلی</button></div>
+      <div class="item"><h3>🟣 نِبولا-۷</h3><p>برای سفر به این منطقه به ۳۰۰ سنگ نیاز داری.</p><button class="secondary" id="unlockPlanet">باز کردن · ۳۰۰ سنگ</button></div>
+    </div>
+    <div class="toast" id="planetToast"></div>
+  </section>
+
+  <section class="panel">
+    <h2>🎯 مأموریت‌های امروز</h2>
+    <div class="mission"><div><b>استخراج‌گر تازه‌کار</b><small>۱۰ بار استخراج کن</small></div><div><b id="mineMission">۰/۱۰</b></div></div>
+    <div class="mission"><div><b>مهندس سفینه</b><small>یک قطعه را ارتقا بده</small></div><div><b id="upgradeMission">۰/۱</b></div></div>
+    <div class="muted" style="margin-top:10px">پاداش مأموریت‌ها در این نسخه نمایشی است؛ اتصال حساب و سرور در مرحله بعد اضافه می‌شود.</div>
+  </section>
+  <div class="footer">SPACE MINE · یک ماجراجویی فضایی در حال ساخت</div>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const fa=n=>Math.floor(n).toLocaleString('fa-IR');
+const defaults={ore:0,crystal:0,energy:100,energyMax:100,drill:1,battery:1,mines:0,upgrades:0,planet:false,last:Date.now()};
+let s;
+try{s={...defaults,...JSON.parse(localStorage.getItem('spacemine_save')||'{}')}}catch(e){s={...defaults}}
+function save(){s.last=Date.now();localStorage.setItem('spacemine_save',JSON.stringify(s))}
+function drillCost(){return 50*s.drill}
+function batteryCost(){return 70*s.battery}
+function render(){
+ $('ore').textContent=fa(s.ore);$('crystal').textContent=fa(s.crystal);
+ $('energy').textContent=fa(s.energy)+'/'+fa(s.energyMax);$('energyText').textContent=fa(s.energy)+' از '+fa(s.energyMax);
+ $('energyBar').style.width=(100*s.energy/s.energyMax)+'%';
+ $('drillLevel').textContent=fa(s.drill);$('batteryLevel').textContent=fa(s.battery);
+ $('drillCost').textContent=fa(drillCost());$('batteryCost').textContent=fa(batteryCost());
+ $('upgradeDrill').disabled=s.ore<drillCost();$('upgradeBattery').disabled=s.ore<batteryCost();
+ $('mine').disabled=s.energy<1;$('mineMission').textContent=fa(Math.min(10,s.mines))+'/۱۰';
+ $('upgradeMission').textContent=(s.upgrades>0?'۱':'۰')+'/۱';
+ $('unlockPlanet').disabled=s.ore<300||s.planet;$('unlockPlanet').textContent=s.planet?'باز شده ✓':'باز کردن · ۳۰۰ سنگ';
+}
+function toast(t){$('toast').textContent=t}
+$('mine').onclick=()=>{
+ if(s.energy<1)return;
+ const amount=5+(s.drill-1)*3;
+ s.ore+=amount;s.energy-=1;s.mines++;
+ if(Math.random()<.12)s.crystal++;
+ save();render();toast('عالی! '+fa(amount)+' سنگ فضایی استخراج کردی.'); 
+};
+$('upgradeDrill').onclick=()=>{
+ const c=drillCost();if(s.ore<c)return;
+ s.ore-=c;s.drill++;s.upgrades++;save();render();toast('مته لیزری ارتقا پیدا کرد!');
+};
+$('upgradeBattery').onclick=()=>{
+ const c=batteryCost();if(s.ore<c)return;
+ s.ore-=c;s.battery++;s.energyMax+=20;s.energy=Math.min(s.energy+20,s.energyMax);s.upgrades++;save();render();toast('ظرفیت باتری بیشتر شد!');
+};
+$('unlockPlanet').onclick=()=>{
+ if(s.ore<300||s.planet)return;
+ s.ore-=300;s.planet=true;save();render();$('planetToast').textContent='🎉 نِبولا-۷ باز شد! در نسخه بعدی امکان سفر و استخراج در آن اضافه می‌شود.';
+};
+setInterval(()=>{
+ if(s.energy<s.energyMax){s.energy=Math.min(s.energyMax,s.energy+1);save();render()}
+},5000);
+render();
+</script>
+</body>
+</html>
