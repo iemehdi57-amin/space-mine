@@ -1,9 +1,11 @@
+
 <!doctype html>
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SPACE MINE | معدن فضایی</title>
+<script src="https://telegram.org/js/telegram-web-app.js?65"></script>
 <style>
 :root{--bg:#071326;--panel:#10233d;--panel2:#142d4c;--cyan:#56e0ee;--gold:#ffd36a;--text:#edf7ff;--muted:#9db4cc;--green:#6ee7a8}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -10%,#1c4771 0,#0a1b32 42%,var(--bg) 100%);color:var(--text);font-family:Tahoma,Arial,sans-serif;min-height:100vh}
@@ -20,7 +22,7 @@ button.secondary{background:#183d5c;border:1px solid #39708f;color:#e9f8ff;paddi
 </head>
 <body>
 <div class="wrap">
-  <header class="top"><div class="brand">SPACE <span>MINE</span></div><div class="tag">نسخه آزمایشی ۰.۱</div></header>
+  <header class="top"><div class="brand">SPACE <span>MINE</span></div><div class="tag" id="runtimeStatus">نسخه آزمایشی ۰.۲</div></header>
   <section class="hero">
     <div class="row"><div><div class="muted">منطقه فعلی</div><h2 style="margin:5px 0 0">سیارک آبی</h2></div><div class="muted">🚀 سفینه شماره ۰۰۱</div></div>
     <div class="planet"><div class="orb"></div><div class="ship">🛸</div></div>
@@ -65,6 +67,7 @@ button.secondary{background:#183d5c;border:1px solid #39708f;color:#e9f8ff;paddi
 </div>
 <script>
 const $=id=>document.getElementById(id);
+const tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
 const fa=n=>Math.floor(n).toLocaleString('fa-IR');
 const defaults={ore:0,crystal:0,energy:100,energyMax:100,drill:1,battery:1,mines:0,upgrades:0,planet:false,last:Date.now()};
 let s;
@@ -107,6 +110,13 @@ setInterval(()=>{
  if(s.energy<s.energyMax){s.energy=Math.min(s.energyMax,s.energy+1);save();render()}
 },5000);
 render();
+if (tg) {
+  if (typeof tg.expand === 'function') tg.expand();
+  if (typeof tg.ready === 'function') tg.ready();
+  $('runtimeStatus').textContent = 'اجرا در تلگرام';
+} else {
+  $('runtimeStatus').textContent = 'حالت مرورگر آزمایشی';
+}
 </script>
 </body>
 </html>
